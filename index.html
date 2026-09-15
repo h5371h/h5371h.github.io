@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hitesh Dammu — EEG signal processing and neural data analysis</title>
+<meta name="description" content="Portfolio of Hitesh Dammu: clinical EEG pipeline engineering, a measured preprocessing contract for pretrained EEG classifiers (ESF preprint v2), human single-neuron working memory analysis, NHP array electrophysiology.">
+<style>
+  :root{--ink:#1c1c1c;--muted:#5a5a5a;--line:#e3e1dc;--bg:#fbfaf7;--card:#ffffff;--accent:#1f4e79;--tag:#eef2f6}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+  h1{font-size:30px;margin:0 0 4px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:17px;margin:0 0 14px}
+  .links a{margin-right:18px;font-size:15px;white-space:nowrap}
+  .bio{max-width:760px;margin-top:18px}
+  nav{position:sticky;top:0;background:rgba(251,250,247,.95);backdrop-filter:blur(4px);border-bottom:1px solid var(--line);z-index:5}
+  nav .wrap{display:flex;gap:18px;overflow-x:auto;padding:10px 20px;font-size:14px}
+  nav a{color:var(--muted);white-space:nowrap}nav a:hover{color:var(--accent)}
+  section{padding:36px 0 8px}
+  h2{font-size:22px;margin:0 0 6px;letter-spacing:-.01em}
+  .meta{color:var(--muted);font-size:14px;margin:0 0 16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px 24px;margin:0 0 22px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .grid.one{grid-template-columns:1fr}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  figure{margin:0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+  figcaption{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4}
+  .tags{margin:10px 0 0}.tag{display:inline-block;background:var(--tag);border-radius:4px;padding:2px 8px;font-size:12.5px;margin:0 6px 6px 0;color:#2f3d4c}
+  ul{padding-left:20px;margin:8px 0}li{margin:3px 0}
+  .ev{font-size:14px;color:var(--muted);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+  .ev strong{color:var(--ink)}
+  .status{font-size:13px;color:#7a5a00;background:#fff6dd;border:1px solid #f1e2a8;border-radius:4px;padding:2px 8px;display:inline-block;margin-left:8px;vertical-align:middle}
+  .pub{margin:8px 0 8px}
+  footer{border-top:1px solid var(--line);padding:26px 0 48px;color:var(--muted);font-size:14px}
+  .num{font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Hitesh Dammu</h1>
+    <p class="sub">EEG signal processing · neural data analysis · clinical EEG pipeline engineering</p>
+    <p class="links">
+      <a href="mailto:hdammu@asu.edu">hdammu@asu.edu</a>
+      <a href="https://github.com/h5371h">GitHub</a>
+      <a href="https://www.linkedin.com/in/hiteshdammu">LinkedIn</a>
+      <a href="https://doi.org/10.5281/zenodo.22772008">Preprint (ESF, v2)</a>
+      <a href="https://doi.org/10.5281/zenodo.22771925">Code archive</a>
+    </p>
+    <p class="bio">MS Biomedical Engineering, Arizona State University (2023). Since January 2025 I have collected clinical EEG on-site with partner neurology clinics in India and built the harmonization infrastructure that gets their recordings out of siloed, vendor-locked acquisition systems into one representation a model can trust, which led to a single-author preprint on a measured preprocessing contract for pretrained EEG classifiers (v2, September 2026). My training is in invasive and non-invasive electrophysiology: spike sorting and array recordings in non-human primates, human single-neuron data in NWB, a micro-ECoG pilot at Barrow Neurological Institute, and scalp EEG at scale. I am looking for doctoral training in brain oscillations and closed-loop brain stimulation.</p>
+  </div>
+</header>
+<nav><div class="wrap">
+  <a href="#esf">ESF preprint</a><a href="#wm">Working memory neurons</a><a href="#recog">Recognition memory</a><a href="#neuropixels">Neuropixels</a><a href="#nhp">NHP arrays</a><a href="#barrow">Barrow pilots</a><a href="#encephlian">Harmonization infrastructure</a><a href="#pubs">Publications</a><a href="#certs">Certifications</a><a href="#edu">Education</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="esf">
+  <h2>ESF: harmonizing heterogeneous EEG acquisition for pretrained classifiers <span class="status">preprint v2, September 2026</span></h2>
+  <p class="meta">Single author · preprint doi:<a href="https://doi.org/10.5281/zenodo.22772008">10.5281/zenodo.22772008</a> · code doi:<a href="https://doi.org/10.5281/zenodo.22771925">10.5281/zenodo.22771925</a> · <a href="https://github.com/h5371h/esf-recoverability">github.com/h5371h/esf-recoverability</a></p>
+  <div class="card">
+    <p>A pretrained EEG classifier is built on recordings from one setup and then used on recorders that sample, amplify, reference and filter differently. The paper asks a narrow question: if every recording is first passed through one fixed preprocessing contract (the Encephlian Standard Format, six standard steps in a fixed order), which of those differences stop mattering, for which model, and at what cost? Five recorder differences are simulated on raw microvolt TUAB recordings and three frozen public models (EEGPT, LaBraM, BIOT) are scored with the contract complete and with the one step that addresses each difference switched off.</p>
+    <div class="grid one"><figure><img src="assets/esf_v2_envelope.png" alt="Table of change in AUROC per acquisition cell for three models, naive and canonicalized arms"><figcaption>The envelope: change in AUROC from each model's clean baseline, per acquisition setting, with the corrective step off (naive) and on (canonicalized). Gain and mains are undone for every model; 128 Hz is undone for EEGPT only; missing electrodes and broadband noise for none.</figcaption></figure></div>
+    <div class="grid">
+      <figure><img src="assets/esf_v2_cells.png" alt="Per-cell recovery arrows for three models and low-pass sweeps"><figcaption>Every cell, and why the models disagree: EEGPT's ranking is unchanged down to a 15 Hz low-pass, while BIOT and LaBraM depend on the 64 to 100 Hz band that low-rate acquisition removes.</figcaption></figure>
+      <figure><img src="assets/esf_v2_recordings.png" alt="Per-recording logits at 128 Hz, legacy recorder positions, and failure categories"><figcaption>What it means for a recording, a legacy 125 Hz Natus recorder, and the direction of failure: uncorrected shift turns normals into confident abnormal reports for two models and abnormals into confident normal reports for the third.</figcaption></figure>
+    </div>
+    <ul>
+      <li><strong>Theory.</strong> Differences with a left-inverse in the contract (gain, mains) are undone for any model; whether a low sampling rate can be undone depends on the band the model uses, which the low-pass sweep measures directly. The AUROC bound is stated class-conditionally and holds on all 40 measured arms for every model.</li>
+      <li><strong>Rigour.</strong> Probes trained on the TUAB train split only, patient-disjoint evaluation; three seeds and a linear probe per model; DeLong tests with FDR control; permuted-label and outlyingness controls; a label-free monitor shown not to work.</li>
+      <li><strong>Correction.</strong> Version 1 was submitted to IEEE SPMB 2026 and withdrawn by me after I found that its operators were applied downstream of the contract and its probe overlapped the evaluation set. Version 2 reruns everything upstream, on three models, and records the correction in a version note.</li>
+    </ul>
+    <p class="ev"><strong>Evidence.</strong> Code, all twelve probes and every per-recording prediction are public; every table and figure regenerates from them on a CPU.</p>
+    <p class="tags"><span class="tag">Python</span><span class="tag">PyTorch · braindecode</span><span class="tag">EEGPT · LaBraM · BIOT (frozen)</span><span class="tag">TUH Abnormal EEG Corpus</span><span class="tag">DeLong · BH-FDR · paired bootstrap</span></p>
+  </div>
+</section>
+
+<section id="wm">
+  <h2>Persistent activity and memory load in human single neurons during a Sternberg task</h2>
+  <p class="meta">Independent analysis, September 2026 · data: Kyzar et al. 2024, <em>Scientific Data</em>, <a href="https://dandiarchive.org/dandiset/000469">DANDI 000469</a> (Rutishauser lab) · 902 units, 21 patients, 21 sessions, streamed from the archive in NWB</p>
+  <div class="card">
+    <p>Do neurons in the human medial temporal and medial frontal lobe fire persistently while items are held in working memory, and does that firing scale with the number of items held? I re-implemented the laboratory's published selectivity tests in Python and added a memory-load analysis.</p>
+    <div class="grid">
+      <figure><img src="assets/wm_example_cell.jpg" alt="Raster and PSTH of a pre-SMA maintenance cell aligned to maintenance onset, trials coloured by memory load"><figcaption>A pre-SMA unit whose rate rises from 0.9 Hz at fixation to 6.0 Hz during the 2.5 s maintenance period (paired t-test p = 4 × 10⁻³⁴), trials sorted and coloured by load 1, 2, 3.</figcaption></figure>
+      <figure><img src="assets/wm_population.jpg" alt="Population PSTH of all maintenance cells by memory load"><figcaption>All 273 maintenance cells, rate above each cell's fixation baseline, by load. Maintenance firing is sustained but does not scale monotonically with load at the population level.</figcaption></figure>
+      <figure><img src="assets/wm_by_area.jpg" alt="Fraction of concept and maintenance cells per brain area"><figcaption>Concept cells concentrate in amygdala and hippocampus (27% and 12%); maintenance cells are most common in pre-SMA and vmPFC (34%).</figcaption></figure>
+      <figure><img src="assets/wm_behavior.jpg" alt="Accuracy and reaction time versus memory load, one line per session"><figcaption>Behaviour degrades with load: accuracy 0.91 → 0.86, median RT 1.10 → 1.22 s (Friedman p = 0.005 and 0.001).</figcaption></figure>
+    </div>
+    <ul>
+      <li><strong>Method.</strong> Concept cells: ANOVA across image identity in the 0.2–1.0 s window after the first encoding image, then preferred-image contrast. Maintenance cells: paired one-tailed test of the 2.5 s maintenance rate against the 0.5 s fixation baseline, repeated on non-preferred trials for concept cells. Load: per-cell Spearman correlation and a population Wilcoxon test.</li>
+      <li><strong>Result.</strong> 119 concept cells (13%) and 273 maintenance cells (30%), consistent with Kamiński et al. 2017. Only 8% of maintenance cells increase significantly with load and 10% decrease; load 3 versus load 1, Wilcoxon p = 0.67. A rate code alone does not carry load, which is the gap the laboratory's phase-of-firing account (Kamiński et al. 2020) fills, and the question that motivates closed-loop TMS–EEG work on prefrontal theta.</li>
+    </ul>
+    <p class="ev"><strong>Evidence.</strong> Only trial tables and spike times were read; no data were synthesised. Extraction and analysis scripts, per-unit results and figures: <a href="https://github.com/h5371h/sternberg-wm-000469">github.com/h5371h/sternberg-wm-000469</a>.</p>
+    <p class="tags"><span class="tag">Python</span><span class="tag">PyNWB · remfile</span><span class="tag">SciPy</span><span class="tag">NWB · DANDI</span></p>
+  </div>
+</section>
+
+<section id="recog">
+  <h2>Memory-selective and visually selective neurons in the human medial temporal lobe</h2>
+  <p class="meta">Course project, Data Analysis in Neuroscience (APM 598 / MAT 494), Arizona State University, spring 2023, grade A · with Oscar Babin · instructor Prof. Sharon Crook · data: Faraut et al. 2018, <a href="https://dandiarchive.org/dandiset/000004">DANDI 000004</a> (Rutishauser lab)</p>
+  <div class="card">
+    <p>Single neurons recorded from hippocampus and amygdala in 59 epilepsy patients during an old/new recognition memory task, 89 sessions in NWB. We adapted the laboratory's release pipeline to extract spike times, cluster identities and trial structure, produced per-neuron rasters and PSTHs, and classified each unit with a one-way ANOVA across image categories (visual selectivity) and a bootstrap test on new versus old trials (memory selectivity). Presented as a poster.</p>
+    <div class="grid">
+      <figure><img src="assets/recog_visual_selective.jpg" alt="Raster and PSTH of a visually selective unit, category responses" ><figcaption>A visually selective unit (patient CS29, channel 10): category-specific firing after stimulus onset, ANOVA p = 2.4 × 10⁻⁷.</figcaption></figure>
+      <figure><img src="assets/recog_memory_example.jpg" alt="Raster and PSTH split by new versus old images"><figcaption>New-versus-old PSTH for a unit with no memory selectivity (p = 0.45), shown as the comparison case.</figcaption></figure>
+    </div>
+    <p class="ev"><strong>Why it matters here.</strong> Same laboratory, same NWB conventions and the same pipeline family as the working memory analysis above; this project is where that pipeline was first learned.</p>
+    <p class="tags"><span class="tag">Python</span><span class="tag">PyNWB · DANDI</span><span class="tag">ANOVA · bootstrap</span></p>
+  </div>
+</section>
+
+<section id="neuropixels">
+  <h2>Neuropixels recordings from human cortex: LFP and spiking under anaesthesia</h2>
+  <p class="meta">Individual course project and poster, Data Analysis in Neuroscience (APM 598 / NEU 591), spring 2023 · instructor Prof. Sharon Crook · data: Paulk et al. 2022, <em>Nature Neuroscience</em>, <a href="https://dandiarchive.org/dandiset/000397">DANDI 000397</a></p>
+  <div class="card">
+    <div class="grid one"><figure><img src="assets/neuropixels_poster.jpg" alt="Poster: Decoding neural dynamics, Neuropixels insights into epilepsy and movement disorders"><figcaption>Poster. Three intraoperative 384-channel Neuropixels recordings (dlPFC and temporal cortex): NWB extraction, aligned raw and LFP traces, raster plots, spectrograms and channel-by-channel correlation matrices.</figcaption></figure></div>
+    <p class="tags"><span class="tag">Python</span><span class="tag">PyNWB</span><span class="tag">Spectrograms · correlation matrices</span></p>
+  </div>
+</section>
+
+<section id="nhp">
+  <h2>Non-human primate array electrophysiology: spike sorting, movement-locked firing, LFP tuning</h2>
+  <p class="meta">Introduction to Neural Engineering (BME 526), Arizona State University, spring 2022, grade A · Utah-array recordings from macaque motor and parietal cortex · MATLAB, Chronux</p>
+  <div class="card">
+    <div class="grid">
+      <figure><img src="assets/spike_pca3d.jpg" alt="3D PCA of action potential and noise snippets with k-means clusters"><figcaption><strong>Spike sorting.</strong> 30 kHz single-channel recording: amplitude threshold as a multiple of the noise estimate, 2 ms snippet extraction, PCA feature space, k-means into four unit clusters plus a noise cluster, signal-to-noise per cluster.</figcaption></figure>
+      <figure><img src="assets/spike_tsne_gmm.jpg" alt="t-SNE embedding of spike snippets with Gaussian-mixture clusters"><figcaption><strong>Alternative embedding.</strong> t-SNE of the same snippets with Gaussian-mixture clustering, used to check that the PCA/k-means partition is not an artefact of linear projection.</figcaption></figure>
+      <figure><img src="assets/m1_raster_peth.jpg" alt="Rasters and PETHs for one M1 unit across seven finger-movement conditions"><figcaption><strong>Motor cortex.</strong> 96-electrode array during finger movements; one unit (channel 42) aligned to movement cue across seven single- and multi-finger conditions, rasters and 100 ms-bin PETHs.</figcaption></figure>
+      <figure><img src="assets/lip_planning.jpg" alt="LIP LFP spectrograms across eight saccade targets during planning with tuning curve"><figcaption><strong>Parietal LFP.</strong> Chronux multitaper spectrograms of lateral intraparietal LFP for eight saccade targets during planning; mean power in the 40–100 Hz window (dotted box) gives a tuning curve peaking at target 6.</figcaption></figure>
+    </div>
+    <div class="grid one"><figure><img src="assets/lip_reaching.jpg" alt="LIP LFP spectrograms during reaching with tuning curve"><figcaption>Same analysis during the reach epoch: the gamma-band tuning persists with the same preferred direction and a broader profile.</figcaption></figure></div>
+    <p class="tags"><span class="tag">MATLAB</span><span class="tag">Chronux</span><span class="tag">PCA · k-means · t-SNE · GMM</span><span class="tag">Rasters · PETH · spectrograms</span></p>
+  </div>
+</section>
+
+<section id="barrow">
+  <h2>Pilot study with Barrow Neurological Institute (2023, unpublished)</h2>
+  <p class="meta">Research assistant, Neural Engineering Laboratory, Arizona State University</p>
+  <div class="card">
+    <h3 style="margin:0 0 6px;font-size:17px">Delta-band micro-ECoG dynamics during speech</h3>
+    <div class="grid">
+      <figure><img src="assets/ecog_delta_speech.jpg" alt="Spectrograms of face motor cortex and Wernicke's area micro-ECoG with aligned audio of repeated word yes"><figcaption>32-channel micro-ECoG from a locked-in patient: face motor cortex (channel 13) and Wernicke's area (channel 19) spectrograms aligned to the audio of repeated "yes". The recording required reconstruction and timestamp alignment before any analysis was possible.</figcaption></figure>
+      <div>
+        <p>Asked whether low-frequency (1–4 Hz) activity in temporal cortex tracks speech structure at syllabic timescales. Processed raw micro-ECoG, computed multitaper spectral dynamics with Chronux, aligned phoneme boundaries from transcripts to delta-band peaks, and explored phoneme classification from the same electrodes. Produced a working path from raw cortical potentials to speech-aligned spectral features; no paper resulted.</p>
+      </div>
+    </div>
+    <p class="tags"><span class="tag">MATLAB</span><span class="tag">Chronux</span><span class="tag">micro-ECoG</span></p>
+  </div>
+</section>
+
+<section id="encephlian">
+  <h2>Harmonization infrastructure for clinical EEG (January 2025 – present)</h2>
+  <p class="meta">Product and engineering, ENCEPHLIAN, Hyderabad · clinical-EEG analysis software used by partner neurologists</p>
+  <div class="card">
+    <p>Clinical EEG is siloed: recordings sit inside vendor-locked databases behind proprietary formats, on acquisition systems that have barely changed in twenty years, and the data cannot leave the machine that made them. Most of the practical work of EEG machine learning is therefore harmonization, not modelling. This is the infrastructure I built and the field work behind it.</p>
+    <ul>
+      <li><strong>Harmonization layer.</strong> Native Natus, Cadwell, Nihon Kohden, Persyst, Nicolet, BrainVision and EDF/BDF recordings are read into one canonical representation, ESF (19-channel 10–20, 250 Hz, average reference, channel-wise robust z-score), so that downstream models generalize across hardware first and across patients second.</li>
+      <li><strong>On-site EEG data collection.</strong> Acquisition setup, montage and electrode-quality checks and session QC with clinic staff on legacy systems. Each site's retrospective archive serves as ground truth for that site's format and acquisition; ESF was designed from this work.</li>
+      <li><strong>Prospective multi-site evaluation</strong> of the harmonized pipeline on those sites' recordings, designed to test whether canonicalization holds against real acquisition variation rather than simulated shift. In progress.</li>
+      <li><strong>Public corpus at scale.</strong> The seven Temple University Hospital EEG subcorpora, 84,552 recordings, harmonized into ESF as a single training and evaluation substrate.</li>
+      <li><strong>Models deployed under a clinician-defined harness.</strong> An interictal epileptiform discharge detector on a frozen EEGPT backbone (held-out, patient-stratified AUC 0.929 on 476 recordings) and a normal/abnormal triage model, both with calibrated abstention; every output carries provenance, and the report is signed by the clinician, not the model.</li>
+      <li><strong>Viewer and reporting.</strong> A browser EEG viewer with montage switching, filtering and model overlays, and structured reporting aligned to the SCORE standard.</li>
+    </ul>
+    <p class="ev">No patient data appear anywhere on this site. Model numbers are internal engineering metrics on public corpora, not clinical-efficacy claims.</p>
+    <p class="tags"><span class="tag">Python · TypeScript</span><span class="tag">MNE · PyTorch · ONNX</span><span class="tag">PostgreSQL · Azure</span><span class="tag">Natus · Cadwell · Nihon Kohden · Persyst</span></p>
+  </div>
+</section>
+
+<section id="pubs">
+  <h2>Publications and manuscripts</h2>
+  <div class="card">
+    <p class="pub"><strong>Dammu H.</strong> ESF: Harmonizing heterogeneous EEG acquisition for pretrained classifiers. Preprint v2, September 2026. <a href="https://doi.org/10.5281/zenodo.22772008">doi:10.5281/zenodo.22772008</a>. Code: <a href="https://github.com/h5371h/esf-recoverability">github.com/h5371h/esf-recoverability</a>. Version 1 was submitted to IEEE SPMB 2026 and withdrawn by the author; see the version note.</p>
+    <p class="pub">Chary Nalband S, Pamidimukkala K, Akkapally P, Challa M, Kirupakaran Y, <strong>Dammu H</strong>, Thati A, Abraham S, Gunda R. Evaluation of surface roughness and cutting temperature of EN31 steel with varying MQSL parameters. <em>IOP Conf. Ser.: Mater. Sci. Eng.</em> 895, 012003 (2020). <a href="https://doi.org/10.1088/1757-899x/895/1/012003">doi:10.1088/1757-899x/895/1/012003</a>. Undergraduate co-author, ICMM 2020, Tokyo.</p>
+  </div>
+</section>
+
+<section id="certs">
+  <h2>Certifications and self-study, 2020–2024</h2>
+  <p class="meta">Each entry links to the issuer's verification page. Dates are the completion dates shown there.</p>
+  <div class="card">
+    <ul>
+      <li><strong>Probabilistic Graphical Models Specialization</strong>, Stanford Online (Daphne Koller), three courses: representation, inference, learning. Completed 24 March 2020. <a href="https://www.coursera.org/verify/specialization/ARCYEB544CC5">Verify</a></li>
+      <li><strong>Professional Certificate in IBM Deep Learning</strong>, IBM via edX: CNNs, RNNs, autoencoders on GPUs; applications to medical imaging and NLP. Issued March 2020. <a href="https://credentials.edx.org/credentials/024316507cbf4512a483833cc16ede08/">Verify</a></li>
+      <li><strong>AI for Medicine Specialization</strong>, DeepLearning.AI: diagnosis from X-ray and 3D MRI, survival prediction, treatment-effect estimation. Completed 4 May 2021. <a href="https://www.coursera.org/verify/specialization/VAW2WREMM8F3">Verify</a></li>
+      <li><strong>Deep Learning Specialization</strong>, DeepLearning.AI: neural networks, optimisation, CNNs, sequence models and transformers in TensorFlow. Completed 13 May 2021. <a href="https://www.coursera.org/verify/specialization/ZLHN7V6MT3XS">Verify</a></li>
+      <li><strong>IBM AI Engineering Professional Certificate</strong>, IBM via Coursera: ML and deep learning models, Apache Spark. <a href="https://www.credly.com/badges/5798ca2c-f6af-4bdd-ab31-8590604d3fbd">Badge</a></li>
+      <li><strong>Machine Learning</strong>, Stanford Online (Andrew Ng): supervised and unsupervised learning, model optimisation. <a href="https://coursera.org/verify/GCB2AMV3TD5G">Verify</a></li>
+      <li><strong>BCI and Neurotechnology Spring School</strong>, g.tec, 2022. <a href="https://drive.google.com/file/d/1YctJD-vFlFVxrh79Xi2RG67Et2wNdhaw/view?usp=sharing">Certificate</a></li>
+      <li><strong>Allen Institute Neural Dynamics Data Exploration</strong>, ASU, 2024.</li>
+    </ul>
+    <p class="ev">The 2020 certificates predate the MS by two years: the machine-learning foundation was built during the B.Tech, then applied to neural data at ASU and in the clinical pipeline work.</p>
+  </div>
+</section>
+
+<section id="edu">
+  <h2>Education and training</h2>
+  <div class="card">
+    <p class="pub"><strong>MS Biomedical Engineering</strong>, Arizona State University, 2022–2023. Neural Engineering (A), Data Analysis in Neuroscience (A), Mathematical Neuroscience (A), Magnetic Resonance Imaging (A−), Low-Power Bioelectronics (A+). Applied project in murine benchtop electrophysiology (A).</p>
+    <p class="pub"><strong>Bachelor of Technology</strong>, Jawaharlal Nehru Technological University, Hyderabad, conferred 2021. Verified by World Education Services as equivalent to a US bachelor's degree: <a href="https://badges.wes.org/Evidence?i=60024e65-c82e-4053-b821-6244e1363fec&amp;type=us">WES credential badge</a>.</p>
+    <p class="pub">Ethics and protocol training: CITI human-subjects research certification; IACUC certification for rodent and non-human primate protocols.</p>
+  </div>
+</section>
+
+</main>
+<footer><div class="wrap">Every figure on this page was produced by me from the dataset named beside it. Clinical recordings are never displayed. Last updated September 2026.</div></footer>
+</body>
+</html>
