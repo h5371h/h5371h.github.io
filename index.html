@@ -50,11 +50,11 @@
       <a href="https://doi.org/10.5281/zenodo.22772008">Preprint (ESF, v2)</a>
       <a href="https://doi.org/10.5281/zenodo.22771925">Code archive</a>
     </p>
-    <p class="bio">MS Biomedical Engineering, Arizona State University (2023). Since January 2025 I have collected clinical EEG on-site with partner neurology clinics in India and built the harmonization infrastructure that gets their recordings out of siloed, vendor-locked acquisition systems into one representation a model can trust, which led to a single-author preprint on a measured preprocessing contract for pretrained EEG classifiers (v2, September 2026). My training is in invasive and non-invasive electrophysiology: spike sorting and array recordings in non-human primates, human single-neuron data in NWB, a micro-ECoG pilot at Barrow Neurological Institute, and scalp EEG at scale. I am looking for doctoral training in brain oscillations and closed-loop brain stimulation.</p>
+    <p class="bio">MS Biomedical Engineering, Arizona State University (2023). Since January 2025 I have collected clinical EEG on-site with partner neurology clinics in India and built the signal pipeline that gets their recordings out of siloed, vendor-locked acquisition systems into one representation a model can trust, which led to a single-author preprint on a measured preprocessing contract for pretrained EEG classifiers (v2, September 2026). My training is in invasive and non-invasive electrophysiology: spike sorting and array recordings in non-human primates, human single-neuron data in NWB, a micro-ECoG pilot at Barrow Neurological Institute, and scalp EEG at scale. I am looking for doctoral training in brain oscillations and closed-loop brain stimulation.</p>
   </div>
 </header>
 <nav><div class="wrap">
-  <a href="#esf">ESF preprint</a><a href="#wm">Working memory neurons</a><a href="#recog">Recognition memory</a><a href="#neuropixels">Neuropixels</a><a href="#nhp">NHP arrays</a><a href="#barrow">Barrow pilots</a><a href="#encephlian">Harmonization infrastructure</a><a href="#pubs">Publications</a><a href="#certs">Certifications</a><a href="#edu">Education</a>
+  <a href="#esf">ESF preprint</a><a href="#wm">Working memory neurons</a><a href="#recog">Recognition memory</a><a href="#neuropixels">Neuropixels</a><a href="#nhp">NHP arrays</a><a href="#barrow">Barrow pilot</a><a href="#encephlian">Clinical EEG pipeline</a><a href="#pubs">Publications</a><a href="#certs">Certifications</a><a href="#edu">Education</a>
 </div></nav>
 
 <main class="wrap">
@@ -70,7 +70,7 @@
       <figure><img src="assets/esf_v2_recordings.png" alt="Per-recording logits at 128 Hz, legacy recorder positions, and failure categories"><figcaption>What it means for a recording, a legacy 125 Hz Natus recorder, and the direction of failure: uncorrected shift turns normals into confident abnormal reports for two models and abnormals into confident normal reports for the third.</figcaption></figure>
     </div>
     <ul>
-      <li><strong>Theory.</strong> Differences with a left-inverse in the contract (gain, mains) are undone for any model; whether a low sampling rate can be undone depends on the band the model uses, which the low-pass sweep measures directly. The AUROC bound is stated class-conditionally and holds on all 40 measured arms for every model.</li>
+      <li><strong>Theory.</strong> Differences the contract can invert exactly (gain, mains) are undone for any model; whether a low sampling rate can be undone depends on the frequency band the model relies on, which the low-pass sweep measures directly.</li>
       <li><strong>Rigour.</strong> Probes trained on the TUAB train split only, patient-disjoint evaluation; three seeds and a linear probe per model; DeLong tests with FDR control; permuted-label and outlyingness controls; a label-free monitor shown not to work.</li>
       <li><strong>Correction.</strong> Version 1 was submitted to IEEE SPMB 2026 and withdrawn by me after I found that its operators were applied downstream of the contract and its probe overlapped the evaluation set. Version 2 reruns everything upstream, on three models, and records the correction in a version note.</li>
     </ul>
@@ -153,19 +153,19 @@
 </section>
 
 <section id="encephlian">
-  <h2>Harmonization infrastructure for clinical EEG (January 2025 – present)</h2>
-  <p class="meta">Product and engineering, ENCEPHLIAN, Hyderabad · clinical-EEG analysis software used by partner neurologists</p>
+  <h2>Clinical EEG signal pipeline (January 2025 – present)</h2>
+  <p class="meta">Signal pipeline engineer, ENCEPHLIAN, Hyderabad · clinical-EEG analysis software used by partner neurologists</p>
   <div class="card">
-    <p>Clinical EEG is siloed: recordings sit inside vendor-locked databases behind proprietary formats, on acquisition systems that have barely changed in twenty years, and the data cannot leave the machine that made them. Most of the practical work of EEG machine learning is therefore harmonization, not modelling. This is the infrastructure I built and the field work behind it.</p>
+    <p>Clinical EEG is siloed: recordings sit inside vendor-locked databases behind proprietary formats, on acquisition systems that have barely changed in twenty years. Most of the practical work of EEG machine learning is therefore getting recordings out and into one representation a model can trust. This is the pipeline I built and the field work behind it.</p>
     <ul>
-      <li><strong>Harmonization layer.</strong> Native Natus, Cadwell, Nihon Kohden, Persyst, Nicolet, BrainVision and EDF/BDF recordings are read into one canonical representation, ESF (19-channel 10–20, 250 Hz, average reference, channel-wise robust z-score), so that downstream models generalize across hardware first and across patients second.</li>
-      <li><strong>On-site EEG data collection.</strong> Acquisition setup, montage and electrode-quality checks and session QC with clinic staff on legacy systems. Each site's retrospective archive serves as ground truth for that site's format and acquisition; ESF was designed from this work.</li>
-      <li><strong>Prospective multi-site evaluation</strong> of the harmonized pipeline on those sites' recordings, designed to test whether canonicalization holds against real acquisition variation rather than simulated shift. In progress.</li>
-      <li><strong>Public corpus at scale.</strong> The seven Temple University Hospital EEG subcorpora, 84,552 recordings, harmonized into ESF as a single training and evaluation substrate.</li>
-      <li><strong>Models deployed under a clinician-defined harness.</strong> An interictal epileptiform discharge detector on a frozen EEGPT backbone (held-out, patient-stratified AUC 0.929 on 476 recordings) and a normal/abnormal triage model, both with calibrated abstention; every output carries provenance, and the report is signed by the clinician, not the model.</li>
-      <li><strong>Viewer and reporting.</strong> A browser EEG viewer with montage switching, filtering and model overlays, and structured reporting aligned to the SCORE standard.</li>
+      <li><strong>Readers and a converter.</strong> Native Natus, Cadwell, Nihon Kohden, Persyst, Nicolet, BrainVision and EDF/BDF exports are read into one canonical representation (19-channel 10–20, 250 Hz, average reference, channel-wise robust z-score).</li>
+      <li><strong>On-site data collection.</strong> Acquisition setup, montage and electrode checks and session QC with staff at three partner clinics, on legacy recorders. Each clinic's retrospective archive (weakly labelled, over 400 GB, vendor-locked) fixed the specification of the canonical format.</li>
+      <li><strong>Public corpus.</strong> The seven Temple University Hospital EEG subcorpora, 84,552 recordings, converted into the same representation for training and evaluation.</li>
+      <li><strong>Measurement.</strong> Which acquisition differences the representation undoes, for three frozen public models: the preprint above.</li>
+      <li><strong>Models.</strong> An interictal discharge detector on frozen EEGPT features (held-out AUC 0.929, n = 476) and a normal/abnormal triage model, with the EEG viewer and structured-report front end they feed into.</li>
+      <li><strong>Evaluation.</strong> Running on the three clinics' retrospective and prospective recordings.</li>
     </ul>
-    <p class="ev">No patient data appear anywhere on this site. Model numbers are internal engineering metrics on public corpora, not clinical-efficacy claims.</p>
+    <p class="ev">No patient data appear anywhere on this site. Model numbers are engineering metrics on public corpora, not clinical claims.</p>
     <p class="tags"><span class="tag">Python · TypeScript</span><span class="tag">MNE · PyTorch · ONNX</span><span class="tag">PostgreSQL · Azure</span><span class="tag">Natus · Cadwell · Nihon Kohden · Persyst</span></p>
   </div>
 </section>
